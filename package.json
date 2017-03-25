@@ -6,7 +6,8 @@
     "dev": "nodemon ./src/index.js",
     "start": "node ./src/index.js",
     "start:cluster": "node ./src/cluster.js",
-    "test:unit": "jest --coverage"
+    "test:unit": "NODE_ENV=testing jest --coverage",
+    "test:e2e": "NODE_ENV=testing mocha --sort ./src/e2e-tests/*.e2e.js"
   },
   "author": "Korkeat W.",
   "license": "ISC",

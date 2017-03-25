@@ -3,15 +3,17 @@ const express = require('express')
 module.exports = (services) => {
   const router = express.Router()
 
-  router.get('/:name/values', (req, res, next) => {
-    const name = req.params.name
+  router.get('/:id/values', (req, res, next) => {
+    const id = req.params.id
 
-    services.stock.getValuesByMarketName(name)
-      .then((values) => {
-        res.json({
-          name,
-          values
-        })
+    services.stock.getValuesByMarketId(id)
+      .then((rows) => {
+        if (rows.length < 1) {
+          res.json({ name: null, values: [] })
+        } else {
+          res.json({ name: rows[0].name, values: rows })
+        }
+        next()
       })
       .catch(next)
   })

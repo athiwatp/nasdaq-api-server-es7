@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1490443320292" clover="3.2.0">
-  <project timestamp="1490443320292" name="All files">
-    <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4" elements="15" coveredelements="15" complexity="0" loc="11" ncloc="11" packages="2" files="2" classes="2">
+<coverage generated="1490468263345" clover="3.2.0">
+  <project timestamp="1490468263346" name="All files">
+    <metrics statements="14" coveredstatements="14" conditionals="3" coveredconditionals="3" methods="4" coveredmethods="4" elements="21" coveredelements="21" complexity="0" loc="14" ncloc="14" packages="2" files="2" classes="2">
       <package name="routes">
-        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <metrics statements="11" coveredstatements="11" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
         <file name="stockRoute.js" path="/home/kor/works/api-server-es7/src/routes/stockRoute.js">
-          <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+          <metrics statements="11" coveredstatements="11" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
           <line num="1" count="1" type="stmt"/>
           <line num="3" count="1" type="stmt"/>
           <line num="4" count="1" type="stmt"/>
           <line num="6" count="1" type="stmt"/>
           <line num="7" count="2" type="stmt"/>
           <line num="9" count="2" type="stmt"/>
-          <line num="11" count="2" type="stmt"/>
-          <line num="19" count="1" type="stmt"/>
+          <line num="11" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="12" count="1" type="stmt"/>
+          <line num="14" count="1" type="stmt"/>
+          <line num="16" count="2" type="stmt"/>
+          <line num="21" count="1" type="stmt"/>
         </file>
       </package>
       <package name="services">
-        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <metrics statements="3" coveredstatements="3" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <file name="stockService.js" path="/home/kor/works/api-server-es7/src/services/stockService.js">
-          <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <metrics statements="3" coveredstatements="3" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
           <line num="1" count="1" type="stmt"/>
           <line num="2" count="1" type="stmt"/>
           <line num="4" count="1" type="stmt"/>

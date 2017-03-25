@@ -25,11 +25,6 @@ async function main () {
   app.listen(config.api.port, () => {
     logger.info(`[SERVER] server started on ::${config.api.port}`)
   })
-
-  // free resource if process is exit
-  process.on('exit', () => {
-    app.close()
-  })
 }
 
 main().catch((err) => {

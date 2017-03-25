@@ -13,6 +13,7 @@ module.exports = {
     "import/no-dynamic-require": "off",
     "import/prefer-default-export": "off",
     "arrow-body-style": "off",
+    "arrow-parens": "off",
     "no-path-concat": ["warn"],
     "eqeqeq": ["warn"],
     "eol-last": ["warn"],

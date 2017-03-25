@@ -12,14 +12,10 @@ const tracker = mockKnex.getTracker()
 describe('#stock service', () => {
   tracker.install()
 
-  describe('getValuesByMarketName()', () => {
+  describe('getValuesByMarketId()', () => {
     beforeAll(() => {
       tracker.on('query', (query) => {
-        const result = {
-          name: 'NASDAQ',
-          values: []
-        }
-        query.response(result)
+        query.response([])
       })
     })
 
@@ -29,11 +25,8 @@ describe('#stock service', () => {
       mockKnex.mock(database, 'knex@0.12');
       const service = stockService({ database, logger })
 
-      return service.getValuesByMarketName('NASDAQ').then((result) => {
-        expect(result).to.be.eql({
-          name: 'NASDAQ',
-          values: []
-        })
+      return service.getValuesByMarketId('1').then((result) => {
+        expect(result).to.be.eql([])
       })
     })
   })
