@@ -1,7 +1,8 @@
 module.exports = {
   "extends": "airbnb-base",
   "plugins": [
-    "import"
+    "mocha",
+    "jest"
   ],
   "rules": {
     "semi": "off",

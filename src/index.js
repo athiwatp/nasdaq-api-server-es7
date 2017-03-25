@@ -1,29 +1,32 @@
-const fs = require('fs')
-
-// initialize dependencies
 const environment = process.env.NODE_ENV
-const config = require('./configs')(environment)
-const logger = require('./logger')(environment)
-const database = require('./database')(config)
-const server = require('./server')
+const Config = require('./configs')
+const Logger = require('./logger')
+const Database = require('./database')
+const Server = require('./server')
 
 async function main () {
-  const app = server(logger)
-  const routeDependencies = {
-    app,
-    database,
-    logger
+  // initialize dependencies
+  const config = Config(environment)
+  const logger = Logger(environment)
+  const database = Database(config)
+
+  // create server
+  const app = Server(logger)
+
+  // initialize services
+  const services = {
+    stock: require('./services/stockService')({ database, logger })
   }
-  const workingDirectory = __dirname
 
-  fs.readdirSync(`${workingDirectory}/routes`).forEach((route) => {
-    require(`${workingDirectory}/routes/${route}`)(routeDependencies)
-  })
+  // initialize routes
+  app.use('/stock', require('./routes/stockRoute')(services))
 
+  // start server
   app.listen(config.api.port, () => {
     logger.info(`[SERVER] server started on ::${config.api.port}`)
   })
 
+  // free resource if process is exit
   process.on('exit', () => {
     app.close()
   })

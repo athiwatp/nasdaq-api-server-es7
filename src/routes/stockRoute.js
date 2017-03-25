@@ -1,13 +1,20 @@
-const Promise = require('bluebird')
 const express = require('express')
 
-module.exports = ({ app, database, logger }) => {
-  const route = express.Router()
+module.exports = (services) => {
+  const router = express.Router()
 
-  app.use('/stock', route)
+  router.get('/:name/values', (req, res, next) => {
+    const name = req.params.name
 
-  route.get('/:id/values', (req, res, next) => {
-    const id = req.params.id
-    res.json({ id })
+    services.stock.getValuesByMarketName(name)
+      .then((values) => {
+        res.json({
+          name,
+          values
+        })
+      })
+      .catch(next)
   })
+
+  return router
 }
