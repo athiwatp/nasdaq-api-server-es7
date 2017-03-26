@@ -9,7 +9,7 @@ const Config = require('../configs')
 const Database = require('../database')
 
 describe('end-to-end test for api', () => {
-  const apiURL = 'http://localhost:10003'
+  const apiURL = 'http://localhost:10002'
   let config
   let database
 
@@ -25,18 +25,7 @@ describe('end-to-end test for api', () => {
   describe('stock api', () => {
     beforeEach(() => {
       // insert sample data
-      return database('stock_labels').truncate().then(() => {
-        return database('stock_labels').insert([
-          {
-            id: 1,
-            name: 'NASDAQ'
-          },
-          {
-            id: 2,
-            name: 'SET'
-          }
-        ])
-      }).then(() => {
+      return database('stock_values').truncate().then(() => {
         return database('stock_values').insert([
           {
             label: 'NASDAQ',
@@ -74,9 +63,7 @@ describe('end-to-end test for api', () => {
 
     afterEach(() => {
       // clear sample data
-      return database('stock_labels').truncate().then(() => {
-        return database('stock_values').truncate()
-      })
+      return database('stock_values').truncate()
     })
 
     it('should return 404', () => {

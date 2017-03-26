@@ -6,10 +6,6 @@ const Logger = require('./logger')
 const Database = require('./database')
 const Server = require('./server')
 
-async function fetchScheduleHandler (service, config) {
-
-}
-
 async function main () {
   // initialize dependencies
   const config = Config(environment)
@@ -26,6 +22,14 @@ async function main () {
     stock: require('./services/stockService')({ database, logger })
   }
 
+  // initialize routes
+  app.use('/stock', require('./routes/stockRoute')(services))
+
+  // start server
+  app.listen(config.api.port, () => {
+    logger.info(`[SERVER] server started on ::${config.api.port}`)
+  })
+
   // tasks and schedule task
   async function fetchRunner () {
     const currentTime = new Date().toUTCString()
@@ -39,12 +43,8 @@ async function main () {
     await fetchRunner()
   }, config.task.fetchInterval)
 
-  // initialize routes
-  app.use('/stock', require('./routes/stockRoute')(services))
-
-  // start server
-  app.listen(config.api.port, () => {
-    logger.info(`[SERVER] server started on ::${config.api.port}`)
+  process.on('exit', () => {
+    app.close()
   })
 }
 

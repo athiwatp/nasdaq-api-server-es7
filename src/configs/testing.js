@@ -2,7 +2,7 @@ module.exports = {
   api: {
     env: 'testing',
     name: process.env.API_NAME || 'Simple RESTful',
-    port: process.env.API_PORT || 10003
+    port: process.env.API_PORT || 10002
   },
   task: {
     fetchInterval: 30 * 60 * 1000, // 30 min
