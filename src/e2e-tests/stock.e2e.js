@@ -25,8 +25,8 @@ describe('end-to-end test for api', () => {
   describe('stock api', () => {
     beforeEach(() => {
       // insert sample data
-      return database('stock_markets').truncate().then(() => {
-        return database('stock_markets').insert([
+      return database('stock_labels').truncate().then(() => {
+        return database('stock_labels').insert([
           {
             id: 1,
             name: 'NASDAQ'
@@ -39,27 +39,27 @@ describe('end-to-end test for api', () => {
       }).then(() => {
         return database('stock_values').insert([
           {
-            market_id: 1,
+            label_id: 1,
             value: 5000,
             created_at: '2017-03-25 16:00:00'
           },
           {
-            market_id: 1,
+            label_id: 1,
             value: 5100,
             created_at: '2017-03-25 16:10:00'
           },
           {
-            market_id: 1,
+            label_id: 1,
             value: 5200,
             created_at: '2017-03-25 16:20:00'
           },
           {
-            market_id: 2,
+            label_id: 2,
             value: 1500,
             created_at: '2017-03-25 16:00:00'
           },
           {
-            market_id: 2,
+            label_id: 2,
             value: 1510,
             created_at: '2017-03-25 16:10:00'
           }
@@ -69,7 +69,7 @@ describe('end-to-end test for api', () => {
 
     afterEach(() => {
       // clear sample data
-      return database('stock_markets').truncate().then(() => {
+      return database('stock_labels').truncate().then(() => {
         return database('stock_values').truncate()
       })
     })

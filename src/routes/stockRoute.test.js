@@ -9,21 +9,27 @@ const expect = require('chai').expect
 const stockRoute = require('./stockRoute')
 
 describe('#stock route', () => {
-  const validResult = [
-    {
-      value: 5555,
-      created_at: '2017-03-25 10:30'
-    },
-    {
-      value: 5432,
-      created_at: '2017-03-25 11:00'
-    }
-  ]
-  const invalidResult = []
+  const validResult = {
+    name: 'NASDAQ',
+    values: [
+      {
+        value: 5555,
+        created_at: '2017-03-25 10:30'
+      },
+      {
+        value: 5432,
+        created_at: '2017-03-25 11:00'
+      }
+    ]
+  }
+  const invalidResult = {
+    name: '',
+    values: []
+  }
   const services = {
     stock: {
-      getValuesByMarketId: (id) => {
-        return Promise.resolve(id === '1' ? validResult : invalidResult)
+      getLabelValuesById: (id) => {
+        return Promise.resolve(id === 1 ? validResult : invalidResult)
       }
     }
   }
