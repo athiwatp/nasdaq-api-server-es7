@@ -15,6 +15,7 @@ module.exports = {
     "arrow-body-style": "off",
     "arrow-parens": "off",
     "no-path-concat": ["warn"],
+    "no-cond-assign": ["warn"],
     "eqeqeq": ["warn"],
     "eol-last": ["warn"],
     "no-empty": ["warn"],

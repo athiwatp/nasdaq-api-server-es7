@@ -39,27 +39,32 @@ describe('end-to-end test for api', () => {
       }).then(() => {
         return database('stock_values').insert([
           {
-            label_id: 1,
+            label: 'NASDAQ',
+            label_norm: 'nasdaq',
             value: 5000,
             created_at: '2017-03-25 16:00:00'
           },
           {
-            label_id: 1,
+            label: 'NASDAQ',
+            label_norm: 'nasdaq',
             value: 5100,
             created_at: '2017-03-25 16:10:00'
           },
           {
-            label_id: 1,
+            label: 'NASDAQ',
+            label_norm: 'nasdaq',
             value: 5200,
             created_at: '2017-03-25 16:20:00'
           },
           {
-            label_id: 2,
+            label: 'ABC',
+            label_norm: 'abc',
             value: 1500,
             created_at: '2017-03-25 16:00:00'
           },
           {
-            label_id: 2,
+            label: 'ABC',
+            label_norm: 'abc',
             value: 1510,
             created_at: '2017-03-25 16:10:00'
           }
@@ -82,7 +87,7 @@ describe('end-to-end test for api', () => {
 
     it('should return list of values from db', () => {
       return request(apiURL)
-        .get('/stock/1/values')
+        .get('/stock/nasdaq/values')
         .expect(200)
         .then((res) => {
           expect(res.body.name).to.be.equal('NASDAQ')

@@ -1,14 +1,12 @@
 module.exports = ({ database, logger }) => {
   return {
     async getLabelValuesById (id) {
-      const labels = await this.getLablesById(id)
-
-      if (labels.length < 1) return { name: '', values: [] }
-
       const values = await this.getValuesByLabelId(id)
 
+      if (values.length < 1) return { name: '', values: [] }
+
       return {
-        name: labels[0].name,
+        name: values[0].label,
         values
       }
     },
@@ -16,16 +14,9 @@ module.exports = ({ database, logger }) => {
       return database
         .select()
         .from('stock_values')
-        .where('stock_values.label_id', '=', id)
+        .where('stock_values.label_norm', '=', id)
         .orderBy('stock_values.created_at', 'desc')
         .limit(limit)
-    },
-    getLablesById (id) {
-      return database
-        .select()
-        .from('stock_labels')
-        .where('stock_labels.id', '=', id)
-        .limit(1)
     }
   }
 }

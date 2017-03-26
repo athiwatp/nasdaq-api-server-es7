@@ -29,29 +29,21 @@ describe('#stock service', () => {
     })
 
     it('should return label name with list of values', () => {
-      tracker.on('query', (query, step) => {
+      tracker.on('query', (query) => {
         query.response([
-          function firstStepQueryLabels () {
-            return [
-              {
-                id: 1,
-                name: 'NASDAQ'
-              }
-            ]
+          {
+            label: 'NASDAQ',
+            label_norm: 'nasdaq',
+            value: 5555,
+            created_at: '2017-03-25 10:30'
           },
-          function secondStepQueryValues () {
-            return [
-              {
-                value: 5555,
-                created_at: '2017-03-25 10:30'
-              },
-              {
-                value: 5432,
-                created_at: '2017-03-25 11:00'
-              }
-            ]
+          {
+            label: 'NASDAQ',
+            label_norm: 'nasdaq',
+            value: 5432,
+            created_at: '2017-03-25 11:00'
           }
-        ][step - 1]())
+        ])
       })
 
       return stockService({ database, logger })
@@ -65,19 +57,12 @@ describe('#stock service', () => {
     })
 
     it('should return label name as empty string with empty values', () => {
-      tracker.on('query', (query, step) => {
-        query.response([
-          function firstStepQueryLabels () {
-            return []
-          },
-          function secondStepQueryValues () {
-            return []
-          }
-        ][step - 1]())
+      tracker.on('query', (query) => {
+        query.response([])
       })
 
       return stockService({ database, logger })
-        .getLabelValuesById(2)
+        .getLabelValuesById('ABC')
         .then(res => {
           return Promise.all([
             expect(res.name).to.be.eql(''),

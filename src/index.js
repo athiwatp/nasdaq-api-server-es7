@@ -1,3 +1,5 @@
+const request = require('superagent')
+
 const environment = process.env.NODE_ENV
 const Config = require('./configs')
 const Logger = require('./logger')
@@ -14,8 +16,11 @@ async function main () {
   const app = Server(logger)
 
   // initialize services
+  const parserService = require('./services/parserService')()
+  const scheduleUpdateService = require('./services/scheduleUpdateService')({ database, logger, request, parserService })
   const services = {
     stock: require('./services/stockService')({ database, logger })
+
   }
 
   // initialize routes

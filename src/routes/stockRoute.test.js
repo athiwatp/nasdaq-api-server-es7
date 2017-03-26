@@ -29,7 +29,7 @@ describe('#stock route', () => {
   const services = {
     stock: {
       getLabelValuesById: (id) => {
-        return Promise.resolve(id === 1 ? validResult : invalidResult)
+        return Promise.resolve(id === 'nasdaq' ? validResult : invalidResult)
       }
     }
   }
@@ -45,7 +45,7 @@ describe('#stock route', () => {
   describe('stock values api', () => {
     it('should return result with not empty values', () => {
       return request(app)
-        .get('/stock/1/values')
+        .get('/stock/nasdaq/values')
         .expect(200)
         .then(res => {
           return expect(res.body.values).to.not.eql([])
@@ -54,7 +54,7 @@ describe('#stock route', () => {
 
     it('should return result values with empty array', () => {
       return request(app)
-        .get('/stock/2/values')
+        .get('/stock/abc/values')
         .expect(200)
         .then(res => {
           return expect(res.body.values).to.eql([])
