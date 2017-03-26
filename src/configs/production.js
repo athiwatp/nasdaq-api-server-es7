@@ -4,6 +4,10 @@ module.exports = {
     name: process.env.API_NAME || 'Simple RESTful',
     port: process.env.API_PORT || 10000
   },
+  task: {
+    fetchInterval: 30 * 60 * 1000, // 30 min
+    fetchURL: 'http://www.nasdaq.com'
+  },
   mysql: {
     host: process.env.MYSQL_HOST || '127.0.0.1',
     username: process.env.MYSQL_USERNAME || 'root',

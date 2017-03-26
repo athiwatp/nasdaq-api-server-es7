@@ -1,13 +1,14 @@
 module.exports = ({ database, logger, request, parser }) => {
   return {
     fetch (url) {
-      return this.request(url).get('/')
+      logger.info(`fetching ${url}`)
+      return request.get(url).then(res => res.text)
     },
     parse (content) {
-      return this.parser.parse(content)
+      return parser.parse(content)
     },
     save (data) {
-      
+      return database('stock_values').insert(data)
     }
   }
 }

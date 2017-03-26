@@ -27,10 +27,12 @@ module.exports = () => {
     clean (orgText) {
       return orgText
         .toLowerCase()
+        .replace(/&/g, ' and ')
+        .replace(/[^\w\d\s-]+/g, '')
         .replace(/\s+/g, ' ')
-        .replace(/&/g, 'and')
-        .replace(/[^\w\d]+/g, '')
-        .replace(/[-\s]+/g, '_')
+        .replace(/-/g, '_')
+        .replace(/\s/g, '_')
+        .trim()
     }
   }
 }
